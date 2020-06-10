@@ -1,0 +1,61 @@
+cradle:
+  direct:
+    arguments:
+      - -hide-all-packages
+      - -no-user-package-db
+      - "-package-db /home/munin/Documents/haskell/ghc/_build/stage0/lib/package.conf.d"
+      - "-package-id array-0.5.4.0"
+      - "-package-id base-4.13.0.0"
+      - "-package-id binary-0.8.7.0"
+      - "-package-id bytestring-0.10.10.0"
+      - "-package-id containers-0.6.2.1"
+      - "-package-id deepseq-1.4.4.0"
+      - "-package-id directory-1.3.6.0"
+      - "-package-id exceptions-0.10.4"
+      - "-package-id filepath-1.4.2.1"
+      - "-package-id ghc-boot-8.11.0.20200605"
+      - "-package-id ghc-boot-th-8.11.0.20200605"
+      - "-package-id ghc-heap-8.11.0.20200605"
+      - "-package-id ghci-8.11.0.20200605"
+      - "-package-id ghc-8.11.0.20200605"
+      - "-package-id hpc-0.6.1.0"
+      - "-package-id process-1.6.8.0"
+      - "-package-id template-haskell-2.17.0.0"
+      - "-package-id terminfo-0.4.1.4"
+      - "-package-id time-1.9.3"
+      - "-package-id transformers-0.5.6.2"
+      - "-package-id unix-2.7.2.2"
+      - -i
+      - -i/home/munin/Documents/haskell/multi-home
+      - -Iincludes
+      - -I/home/munin/Documents/haskell/ghc/.hie-bios/stage0/lib
+      - -I/home/munin/Documents/haskell/ghc/.hie-bios/stage0/compiler/build
+      - -I/nix/store/gdq7d73w6g1gsmh5b3s9azwz04walibn-gmp-6.2.0-dev/include
+      - -I/home/munin/Documents/haskell/ghc/.hie-bios/stage0/compiler/build/.
+      - -I/home/munin/Documents/haskell/ghc/compiler/.
+      - -I/nix/store/xw9w7l93ksdbcjb9jgpsarya3x9vq5ns-ghc-8.8.3/lib/ghc-8.8.3/process-1.6.8.0/include
+      - -I/nix/store/z9hplpp91s3s8k8gsj5wvhnsqpvijz0p-ghc-8.8.3/lib/ghc-8.8.3/unix-2.7.2.2/include
+      - -I/nix/store/z9hplpp91s3s8k8gsj5wvhnsqpvijz0p-ghc-8.8.3/lib/ghc-8.8.3/time-1.9.3/include
+      - -I/nix/store/z9hplpp91s3s8k8gsj5wvhnsqpvijz0p-ghc-8.8.3/lib/ghc-8.8.3/bytestring-0.10.10.0/include
+      - -I/nix/store/z9hplpp91s3s8k8gsj5wvhnsqpvijz0p-ghc-8.8.3/lib/ghc-8.8.3/base-4.13.0.0/include
+      - -I/nix/store/s5djfkcawp9ijvjzvs3y0xggd9mkpicf-gmp-6.2.0-dev/include
+      - -I/nix/store/z9hplpp91s3s8k8gsj5wvhnsqpvijz0p-ghc-8.8.3/lib/ghc-8.8.3/integer-gmp-1.0.2.0/include
+      - -I/nix/store/z9hplpp91s3s8k8gsj5wvhnsqpvijz0p-ghc-8.8.3/lib/ghc-8.8.3/include
+      - -I/nix/store/ds93b7i4m3kdj9psns0psync2ydl2wb5-libffi-3.3-dev/include
+      - -I/home/munin/Documents/haskell/ghc/.hie-bios/stage0/lib
+      - -optc-I/home/munin/Documents/haskell/ghc/.hie-bios/stage0/lib
+      - -optP-include
+      - -optP/home/munin/Documents/haskell/ghc/.hie-bios/stage0/compiler/build/autogen/cabal_macros.h
+      - -O0
+      - -H64m
+      - -Wall
+      - -Wno-name-shadowing
+      - -Wnoncanonical-monad-instances
+      - -Wnoncanonical-monoid-instances
+      - -this-unit-id comp
+      - -XHaskell2010
+      - -optc-DTHREADED_RTS
+      - -fno-warn-deprecated-flags
+      - A
+      - B
+      - comp.hs
