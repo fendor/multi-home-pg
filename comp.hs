@@ -13,14 +13,13 @@ import GHC.Utils.Outputable
 
 componentA :: UnitId
 componentA = stringToUnitId "main"
+
 componentB :: UnitId
 componentB =  stringToUnitId "componentB"
 
 main :: IO ()
 main = do
     runGhc' $ do
-      dflags <- getSessionDynFlags
-      liftIO $ putStrLn $ showSDoc dflags $ ppr componentA
       setTargets
         [ Target (TargetModule $ mkModuleName "A") componentA True Nothing
         , Target (TargetModule $ mkModuleName "B") componentB True Nothing
@@ -40,18 +39,23 @@ runGhc' act = do
     let libdir = "/home/munin/Documents/haskell/ghc/_build/stage1/lib"
     runGhc (Just libdir) $ do
       dflags0 <- getSessionDynFlags
-      let dflagsBase = flip gopt_set Opt_WriteHie dflags0 {
-              hscTarget = HscAsm
-            , ghcLink   = LinkBinary
-            , hiDir = Just "output"
-            , objectDir = Just "output"
-            , hieDir = Just "output"
-            , verbosity = 1
-            }
+      let dflagsBase =
+            flip gopt_set Opt_WriteHie
+            $ flip dopt_set Opt_D_dump_rn_trace
+            $ dflags0 {
+                  hscTarget = HscAsm
+                , ghcLink   = LinkBinary
+                , hiDir = Just "./output"
+                , objectDir = Just "./output"
+                , hieDir = Just "./output"
+                , verbosity = 2
+                , parMakeCount = Just 1
+                }
           dflagsA = dflagsBase
             { importPaths = ["./a"]
             , outputFile = Just "A"
             , thisUnitId = componentA
+            , mainModIs = mkModule (stringToUnit $ unitIdString componentA) (mkModuleName "A")
             }
           dflagsB = dflagsBase
             { importPaths = ["./b"]
@@ -67,4 +71,8 @@ runGhc' act = do
                 ]
           }
         )
+      setSessionDynFlags dflagsA
+      dflags <- getSessionDynFlags
+      liftIO $ putStrLn $ showSDoc dflags (ppr $ mainModIs dflagsBase)
+
       act
