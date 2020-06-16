@@ -21,7 +21,7 @@ main :: IO ()
 main = do
     runGhc' $ do
       setTargets
-        [ Target (TargetModule $ mkModuleName "A") componentA True Nothing
+        [ Target (TargetModule $ mkModuleName "Main") componentA True Nothing
         , Target (TargetModule $ mkModuleName "B") componentB True Nothing
         ]
       load LoadAllTargets >>=
@@ -54,12 +54,12 @@ runGhc' act = do
           dflagsA = dflagsBase
             { importPaths = ["./a"]
             , outputFile = Just "A"
-            , thisUnitId = componentA
-            , mainModIs = mkModule (stringToUnit $ unitIdString componentA) (mkModuleName "A")
+            , homeUnitId = componentA
+            , mainModIs = mkModule (stringToUnit $ unitIdString componentA) (mkModuleName "Main")
             }
           dflagsB = dflagsBase
             { importPaths = ["./b"]
-            , thisUnitId = componentB
+            , homeUnitId = componentB
             }
 
       modifySession (\hsc_env -> hsc_env
